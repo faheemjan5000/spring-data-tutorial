@@ -102,4 +102,23 @@ public class StudentRepositoryTest {
         Assert.assertTrue(student.getEmail().equalsIgnoreCase(emailAddress));
     }
 
+    @Test
+    public  void getStudentByEmailAddressNativeQueryPARAMExample(){
+        String emailAddress = "harnnoon@gmail.com";
+        Student student = studentService.getStudentByEmailAddressNativeQueryExample(emailAddress);
+        log.info("student : {}",student);
+        Assert.assertTrue(student.getEmail().equalsIgnoreCase(emailAddress));
+    }
+
+    @Test
+    public void updateFirstNameByEmailId(){
+        String firstName = "fahaam";
+        String email = "third@gmail.com";
+        studentService.updateFirstNameByEmailId(firstName,email);
+        Student student = studentService.getStudentByEmailAddress(email);
+        log.info("student : {}",student);
+        Assert.assertTrue(student.getFirstName().equalsIgnoreCase(firstName));
+    }
+
+
 }

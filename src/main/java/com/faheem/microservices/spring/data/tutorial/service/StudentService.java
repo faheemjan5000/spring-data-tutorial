@@ -5,6 +5,7 @@ import com.faheem.microservices.spring.data.tutorial.entity.Student;
 import com.faheem.microservices.spring.data.tutorial.repository.StudentRepository;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +52,15 @@ public class StudentService {
     public Student getStudentByEmailAddressNativeQueryExample(String emailAddress){
         return studentRepository.getStudentByEmailAddressNativeQueryExample(emailAddress);
     }
+
+    public  Student getStudentByEmailAddressNativeQueryPARAMExample( String email){
+        return studentRepository.getStudentByEmailAddressNativeQueryPARAMExample(email);
+    }
+
+    public  void updateFirstNameByEmailId(String firstName, String email){
+        studentRepository.updateFirstNameByEmailId(firstName,email);
+    }
+
+
 
 }
