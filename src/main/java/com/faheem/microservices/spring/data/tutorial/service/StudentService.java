@@ -34,4 +34,22 @@ public class StudentService {
     public List<Student> findByGuardianName(String guardianName){
         return studentRepository.findByGuardianName(guardianName);
     }
+
+    public  Student findByFirstNameAndLastName(String firstName , String lastName){
+
+        return studentRepository.findByFirstNameAndLastName(firstName,lastName);
+    }
+
+    public  Student getStudentByEmailAddress(String emailAddress){
+        return studentRepository.getStudentByEmailAddress(emailAddress);
+    }
+
+    public String getStudentFirstNameByEmailAddress(String emailAddress){
+        return studentRepository.getStudentFirstNameByEmailAddress(emailAddress);
+    }
+
+    public Student getStudentByEmailAddressNativeQueryExample(String emailAddress){
+        return studentRepository.getStudentByEmailAddressNativeQueryExample(emailAddress);
+    }
+
 }

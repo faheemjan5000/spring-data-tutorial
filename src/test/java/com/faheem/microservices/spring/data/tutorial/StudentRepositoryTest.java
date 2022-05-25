@@ -3,6 +3,7 @@ package com.faheem.microservices.spring.data.tutorial;
 import com.faheem.microservices.spring.data.tutorial.entity.Guardian;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
 import com.faheem.microservices.spring.data.tutorial.service.StudentService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
-
+@Slf4j
 @SpringBootTest
 public class StudentRepositoryTest {
 
@@ -25,15 +26,15 @@ public class StudentRepositoryTest {
        Student student = Student.builder()
                .firstName("monica")
                .lastName("longo")
-               .email("monica@gmail.com")
+               .email("monica2@gmail.com")
                .build();
        System.out.println("hello world");
         studentService.save(student);
     }
     @Test
     public void saveStudentWithGuardian(){
-        Guardian guardian = new Guardian("secondNana","SecondNana@gmail.com","7333882");
-        Student student = new Student("faheem","secondFaheem","second@gmail.com",guardian);
+        Guardian guardian = new Guardian("thirdNana","third@gmail.com","7333882");
+        Student student = new Student("faheem","thirdFaheem","third@gmail.com",guardian);
         studentService.save(student);
     }
 
@@ -64,6 +65,41 @@ public class StudentRepositoryTest {
         System.out.println(students);
         students.stream()
                 .forEach(student->Assert.assertTrue(student.getGuardian().getName().equalsIgnoreCase("nana")));
+    }
+
+    @Test
+     public void getByFirstNameAndLastName(){
+        String firstName ="faheem";
+        String lastName = "jan";
+        Student studentFound = studentService.findByFirstNameAndLastName(firstName,lastName);
+       Assert.assertEquals("faheem",studentFound.getFirstName());
+       Assert.assertEquals("jan",studentFound.getLastName());
+       log.info("student found is :{}", studentFound);
+
+    }
+
+    @Test
+    public  void getStudentByEmailAddress(){
+        String emailAddress = "harnnoon@gmail.com";
+        Student student = studentService.getStudentByEmailAddress(emailAddress);
+        log.info("student is : {}",student);
+        Assert.assertTrue(student.getEmail().equalsIgnoreCase(emailAddress));
+    }
+
+    @Test
+    public  void getStudentFirstNameByEmailAddress(){
+        String emailAddress = "harnnoon@gmail.com";
+        String studentFirstName = studentService.getStudentFirstNameByEmailAddress(emailAddress);
+        log.info("student firstName is : {}",studentFirstName);
+        Assert.assertTrue(studentFirstName.equalsIgnoreCase("haroon"));
+    }
+
+    @Test
+    public  void getStudentByEmailAddressNativeQueryExample(){
+        String emailAddress = "harnnoon@gmail.com";
+        Student student = studentService.getStudentByEmailAddressNativeQueryExample(emailAddress);
+        log.info("student : {}",student);
+        Assert.assertTrue(student.getEmail().equalsIgnoreCase(emailAddress));
     }
 
 }
