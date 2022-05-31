@@ -1,7 +1,7 @@
 package com.faheem.microservices.spring.data.tutorial.repository;
 
 import com.faheem.microservices.spring.data.tutorial.entity.Course;
-import com.faheem.microservices.spring.data.tutorial.entity.Student;
+import com.faheem.microservices.spring.data.tutorial.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,14 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course,Integer> {
+public interface TeacherRepository extends JpaRepository<Teacher,Integer>{
 
-   // List<Course> findByTeacherId(int teacherId);
+    /*
 
     @Query(
-            value = "SELECT * FROM course c WHERE c.teacher_id=?1",
+            value = "SELECT * FROM teacher s WHERE s.teacher_id=?1 ", //error in SELECT(select only courses)
             nativeQuery = true
     )
-    List<Course> getCoursesByTeacherId(int teacherId);
+    List<Course> getAllCoursesByTeacherId(int teacherId);
+
+
+     */
 
 }

@@ -1,9 +1,6 @@
 package com.faheem.microservices.spring.data.tutorial.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
+@ToString(exclude = "course")
 public class CourseMaterial {
 
     @SequenceGenerator(
@@ -25,12 +23,15 @@ public class CourseMaterial {
     )
     @Id
     private Long courseMaterialId;
-    private String url;
+    private String courseMaterialUrl;
 
-    @OneToOne
+    @OneToOne( // here it means that only courseMaterial pointing to course(unidirectional)
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY // fetch only this object not other objects with whom it makes relations
+    )
     @JoinColumn(
             name = "course_id",
             referencedColumnName = "courseId"
     )
-    private Course course;
+    private Course course; //in Course class write this identifier in mappedBye
 }

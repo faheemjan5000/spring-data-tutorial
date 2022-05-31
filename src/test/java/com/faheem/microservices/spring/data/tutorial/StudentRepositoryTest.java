@@ -2,6 +2,7 @@ package com.faheem.microservices.spring.data.tutorial;
 
 import com.faheem.microservices.spring.data.tutorial.entity.Guardian;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
+import com.faheem.microservices.spring.data.tutorial.exceptions.NoStudentAvailableException;
 import com.faheem.microservices.spring.data.tutorial.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -39,7 +40,7 @@ public class StudentRepositoryTest {
     }
 
     @Test
-    public void printAllStudents(){
+    public void printAllStudents() throws NoStudentAvailableException {
         studentService.printAllStudents();
     }
 
