@@ -1,5 +1,6 @@
 package com.faheem.microservices.spring.data.tutorial.repository;
 
+import com.faheem.microservices.spring.data.tutorial.entity.Course;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,11 +12,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student,Long> {
+public interface StudentRepository extends JpaRepository<Student,Integer> {
 
       List<Student> findByFirstName(String firstName);
 
-      List<Student> findByFirstNameContaining(String pattern);
 
       List<Student> findByGuardianName(String guardianName);
 
@@ -54,7 +54,6 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
               nativeQuery = true
       )
       void updateFirstNameByEmailId(String firstName, String email);
-
 
 
 

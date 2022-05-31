@@ -1,6 +1,7 @@
 package com.faheem.microservices.spring.data.tutorial.service;
 
 
+import com.faheem.microservices.spring.data.tutorial.entity.Course;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
 import com.faheem.microservices.spring.data.tutorial.exceptions.NoStudentAvailableException;
 import com.faheem.microservices.spring.data.tutorial.repository.StudentRepository;
@@ -43,9 +44,6 @@ public class StudentService {
        return studentRepository.findByFirstName(firstName);
     }
 
-    public List<Student> findByFirstNameContainint(String pattern){
-        return studentRepository.findByFirstNameContaining(pattern);
-    }
 
     public List<Student> findByGuardianName(String guardianName){
         return studentRepository.findByGuardianName(guardianName);
@@ -68,13 +66,10 @@ public class StudentService {
         return studentRepository.getStudentByEmailAddressNativeQueryExample(emailAddress);
     }
 
-    public  Student getStudentByEmailAddressNativeQueryPARAMExample( String email){
-        return studentRepository.getStudentByEmailAddressNativeQueryPARAMExample(email);
-    }
-
     public  void updateFirstNameByEmailId(String firstName, String email){
         studentRepository.updateFirstNameByEmailId(firstName,email);
     }
+
 
 
 

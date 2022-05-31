@@ -1,8 +1,11 @@
 package com.faheem.microservices.spring.data.tutorial;
 
+import com.faheem.microservices.spring.data.tutorial.entity.Course;
 import com.faheem.microservices.spring.data.tutorial.entity.Guardian;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
+import com.faheem.microservices.spring.data.tutorial.entity.StudentCourseMap;
 import com.faheem.microservices.spring.data.tutorial.exceptions.NoStudentAvailableException;
+import com.faheem.microservices.spring.data.tutorial.service.StudentCourseMapService;
 import com.faheem.microservices.spring.data.tutorial.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 @Slf4j
 @SpringBootTest
@@ -18,6 +22,7 @@ public class StudentRepositoryTest {
 
     @Autowired
     StudentService studentService;
+
 
     @Autowired
     private WebApplicationContext applicationContext;
@@ -120,6 +125,8 @@ public class StudentRepositoryTest {
         log.info("student : {}",student);
         Assert.assertTrue(student.getFirstName().equalsIgnoreCase(firstName));
     }
+
+
 
 
 }

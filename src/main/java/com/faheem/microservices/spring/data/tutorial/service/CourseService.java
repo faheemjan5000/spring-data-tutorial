@@ -28,4 +28,8 @@ public class CourseService {
         return courseRepository.getCoursesByTeacherId(teacherId);
     }
 
+    public Course getCourseByCourseId(int courseId){
+        log.info("CourseService.getCourseByCourseId() method called....");
+        return courseRepository.findById(courseId).get();
+    }
 }

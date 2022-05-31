@@ -1,9 +1,6 @@
 package com.faheem.microservices.spring.data.tutorial.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@ToString
 @Table(
         name="tabl_student",
         uniqueConstraints = @UniqueConstraint(
@@ -32,7 +29,7 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
-    private Long studentId;
+    private Integer studentId;
     private String firstName;
     private String lastName;
     @Column(
