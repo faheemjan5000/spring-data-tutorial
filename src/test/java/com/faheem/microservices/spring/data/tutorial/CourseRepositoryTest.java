@@ -3,16 +3,13 @@ package com.faheem.microservices.spring.data.tutorial;
 
 import com.faheem.microservices.spring.data.tutorial.entity.Course;
 import com.faheem.microservices.spring.data.tutorial.entity.Student;
-import com.faheem.microservices.spring.data.tutorial.entity.StudentCourseMap;
 import com.faheem.microservices.spring.data.tutorial.entity.Teacher;
 import com.faheem.microservices.spring.data.tutorial.service.CourseService;
-import com.faheem.microservices.spring.data.tutorial.service.StudentCourseMapService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -21,9 +18,6 @@ public class CourseRepositoryTest {
 
     @Autowired
     private CourseService courseService;
-
-    @Autowired
-    StudentCourseMapService studentCourseMapService;
 
     @Test
     public void printCourses(){
@@ -82,29 +76,15 @@ public class CourseRepositoryTest {
         log.info("course saved is : {}",courseSaved);
     }
 
-    @Test
-    public void getCoursesByStudentId(){
-        log.info("CourseRepositoryTest.getCoursesByStudentId() method called.....");
-        int studentId = 12;
-        List<StudentCourseMap> list = studentCourseMapService.getStudentCourseMapByStudentId(studentId);
-        List<Course> coursesByStudent = new ArrayList<>();
-        for(StudentCourseMap map : list){
-             if(courseService.getCourseByCourseId( map.getCourseId().intValue() )!=null){
-                 coursesByStudent.add(courseService.getCourseByCourseId( map.getCourseId() ));
-             }
-        }
-        System.out.println("hello : "+ coursesByStudent);
-        log.info("courses by student are : {}",coursesByStudent);
-    }
 
     @Test
-    public void getStudentsForSpecificCourse(){
+    public void getStudentsForSpecificCourse() {
         int courseId = 10;
         Course course = courseService.getCourseByCourseId(courseId);
         List<Student> studentsForCourse = course.getStudents();
-        log.info("total students found : {}",studentsForCourse.size());
-        for(Student student : studentsForCourse){
-            log.info("student name :{}",student.getFirstName());
+        log.info("total students found : {}", studentsForCourse.size());
+        for (Student student : studentsForCourse) {
+            log.info("student name :{}", student.getFirstName());
         }
     }
 
